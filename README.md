@@ -3,7 +3,10 @@
 
 For all my SRE needs, neatly packaged in a Docker container.
 
-## default:
+## build:
+`docker build -t mathisve/aiosre .`
+
+## run:
 
 `docker run -it mathisve/aiosre`
 
