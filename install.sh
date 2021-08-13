@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apt-get update
-apt-get install sudo apt-utils net-tools git htop wget curl unzip build-essential make -y
+apt-get install sudo apt-utils net-tools git htop nano wget curl unzip build-essential make -y
 apt-get upgrade -y
 apt-get autoremove
 
@@ -12,6 +12,8 @@ sudo ./aws/install
 rm awscliv2.zip
 
 aws --version
+
+mkdir ~/.aws
 
 
 # Terraform 
