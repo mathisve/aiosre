@@ -1,19 +1,14 @@
 name: build
 
-on:
-  push:
-    branches:
-      - 'master'
-      - 'development'
-  pull_request:
-    branches:
-      - 'master'
-      - 'development'    
+on: [push, pull_request]
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
