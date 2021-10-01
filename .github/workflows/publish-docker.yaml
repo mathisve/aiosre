@@ -31,7 +31,7 @@ jobs:
           docker buildx build \
           --platform linux/amd64,linux/arm64 \
           -t ${{ secrets.DOCKERHUB_USERNAME }}/aiosre:latest \
-          -t ${{ secrets.DOCKERHUB_USERNAME }}/aiosre:latest-ci
+          -t ${{ secrets.DOCKERHUB_USERNAME }}/aiosre:latest-ci \
           --push \
           .
       -
