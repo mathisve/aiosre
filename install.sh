@@ -1,13 +1,22 @@
 #!/bin/bash
+export arch=$(uname -m)
 
-apt-get update
-apt-get install sudo apt-utils net-tools git htop nano wget curl unzip build-essential make -y
-apt-get upgrade -y
-apt-get autoremove
+echo "Installing apt packages"
+apt-get -qq update
+apt-get -qq install sudo apt-utils net-tools git htop nano wget curl unzip build-essential make -y
+apt-get -qq upgrade -y
+apt-get -qq autoremove
 
 # AWS CLI
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
+echo "Installing AWS CLI"
+if [ "$arch" = "aarch64" ]; then
+    export AWS_URL="https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip"
+else
+    export AWS_URL="https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+fi 
+
+curl "$AWS_URL" -o "awscliv2.zip"
+unzip -q awscliv2.zip
 sudo ./aws/install
 rm awscliv2.zip
 
@@ -15,28 +24,28 @@ aws --version
 
 mkdir ~/.aws
 
-
 # Terraform 
-wget https://releases.hashicorp.com/terraform/1.0.4/terraform_1.0.4_linux_amd64.zip
-unzip terraform_*.zip
+echo "Installing Terraform"
+if [ "$arch" = "aarch64" ]; then
+    export TERRAFORM_URL="https://releases.hashicorp.com/terraform/1.0.8/terraform_1.0.8_linux_arm64.zip"
+else
+    export TERRAFORM_URL="https://releases.hashicorp.com/terraform/1.0.8/terraform_1.0.8_linux_amd64.zip"
+fi 
+
+curl "$TERRAFORM_URL" -o "terraform.zip"
+unzip terraform.zip
 sudo mv terraform /usr/local/bin
 rm -f terraform*
-
 terraform --version
 
-
 # Kubectl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
-echo "$(<kubectl.sha256) kubectl" | sha256sum --check
+echo "Installing Kubectl"
+if [ "$arch" = "aarch64" ]; then
+    export KUBECTL_URL="https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/arm64/kubectl"
+else
+    export KUBECTL_URL="https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+fi
+
+curl -s -LO "$KUBECTL_URL"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-
 kubectl version --client
-
-
-# eksctl
-curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-sudo mv /tmp/eksctl /usr/local/bin
-# rm eksctl_*_amd64.tar.gz
-
-eksctl version
