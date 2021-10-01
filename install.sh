@@ -7,6 +7,7 @@ apt-get -qq install sudo apt-utils net-tools git htop nano wget curl unzip build
 apt-get -qq upgrade -y
 apt-get -qq autoremove
 
+
 # AWS CLI
 echo "Installing AWS CLI"
 if [ "$arch" = "aarch64" ]; then
@@ -17,12 +18,10 @@ fi
 
 curl "$AWS_URL" -o "awscliv2.zip"
 unzip -q awscliv2.zip
+mkdir ~/.aws
 sudo ./aws/install
 rm awscliv2.zip
-
 aws --version
-
-mkdir ~/.aws
 
 # Terraform 
 echo "Installing Terraform"
@@ -49,3 +48,4 @@ fi
 curl -s -LO "$KUBECTL_URL"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 kubectl version --client
+
