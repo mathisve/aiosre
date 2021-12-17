@@ -1,15 +1,45 @@
 # aiosre-docker
-## All In One SRE Docker Container
+## All In One SRE Docker Container.
+Now for **amd64** and **arm64**!
 
 For all my SRE needs, neatly packaged in a Docker container.
+### Comes with:
+- aws-cli
+- terraform
+- kubectl
+- make
+- git
+- ...
 
 ## build:
-`docker build -t mathisve/aiosre .`
+```bash
+docker build -t aiosre .
+```
 
 ## run:
+```bash
+docker run -it mathisve/aiosre
+```
 
-`docker run -it mathisve/aiosre`
+## with AWS Credentials
 
-<!-- ## with AWS Credentials
+```bash
+docker run -it \
+    -v "$HOME"/.aws:/root/.aws \
+    mathisve/aiosre
+```
 
-`docker run -it -V ~/.aws:/home/root/.aws mathisve/aiosre` -->
+## with kubeconfig
+```bash
+docker run -it \
+    -v "$HOME"/.kube:/root/.kube \
+    mathisve/aiosre
+```
+
+## with AWS Credentials and kubeconfig
+```bash
+docker run -it \
+    -v "$HOME"/.aws:/root/.aws \
+    -v "$HOME"/.kube:/root/.kube \
+    mathisve/aiosre
+```
