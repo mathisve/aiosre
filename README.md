@@ -1,3 +1,6 @@
+![Build](https://github.com/mathisve/aiosre-docker/actions/workflows/build-docker.yaml/badge.svg)
+![Publish](https://github.com/mathisve/aiosre-docker/actions/workflows/publish-docker.yaml/badge.svg)
+
 # aiosre-docker
 ## All In One SRE Docker Container.
 Now for **amd64** and **arm64**!
