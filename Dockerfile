@@ -1,5 +1,7 @@
 FROM ubuntu:21.04
 
+LABEL org.opencontainers.image.source https://github.com/mathisve/aiosre
+
 COPY ./scripts /tmp 
 
 RUN chmod +x /tmp/*.sh
