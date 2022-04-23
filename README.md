@@ -1,5 +1,6 @@
-![Build](https://github.com/mathisve/aiosre/actions/workflows/build-docker.yaml/badge.svg)
-![Publish](https://github.com/mathisve/aiosre/actions/workflows/publish-docker.yaml/badge.svg)
+[![build](https://github.com/mathisve/aiosre/actions/workflows/build-docker.yaml/badge.svg)](https://github.com/mathisve/aiosre/actions/workflows/build-docker.yaml)
+[![publish docker-hub](https://github.com/mathisve/aiosre/actions/workflows/publish-docker-hub.yaml/badge.svg)](https://github.com/mathisve/aiosre/actions/workflows/publish-docker-hub.yaml)
+[![publish ghcr](https://github.com/mathisve/aiosre/actions/workflows/publish-ghcr.yaml/badge.svg)](https://github.com/mathisve/aiosre/actions/workflows/publish-ghcr.yaml)
 
 # aiosre
 ## All In One SRE Docker Container.
@@ -22,6 +23,10 @@ docker build -t aiosre .
 ## run:
 ```bash
 docker run -it mathisve/aiosre
+```
+or
+```bash
+docker run -it ghcr.io/mathisve/aiosre
 ```
 
 ## with AWS Credentials

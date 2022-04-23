@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        name: verified commit check
+        name: Verified commit check
         uses: nadock/verified_commits_check@v1
       -
         name: Checkout
