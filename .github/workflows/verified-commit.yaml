@@ -1,6 +1,6 @@
 name: Run verified commits check
 
-on: push
+on: pull_request
 
 jobs:
   verified_commit_check:
