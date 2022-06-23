@@ -1,4 +1,4 @@
-FROM ubuntu:21.04
+FROM ubuntu:22.04
 
 LABEL org.opencontainers.image.source https://github.com/mathisve/aiosre
 LABEL org.opencontainers.image.description All In One SRE Docker Container
