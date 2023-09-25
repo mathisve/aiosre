@@ -3,8 +3,7 @@ name: build
 on:
   push:
   pull_request:
-  schedule:
-    - cron: '0 0 */7 1-12 *'
+
 jobs:
   docker:
     runs-on: ubuntu-latest
